@@ -1,6 +1,20 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
+const path = require('path');
 
-module.exports = nextConfig
+
+/** @type {import('next').NextConfig} */
+const nextConfig = phase => (
+  {
+    reactStrictMode: true,
+    webpack(config,{ webpack }){
+      config.resolve = {
+				alias: {
+					'@components': path.resolve(__dirname, './components')
+				},
+				...config.resolve
+			};
+			return config;
+    }
+  }
+)
+
+module.exports = nextConfig;
