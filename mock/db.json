@@ -1,0 +1,11 @@
+{
+  "todos": [
+    { "id": 1, "content": "리코일 배우기" },
+    { "id": 2, "content": "넥스트js 배우기" },
+    { "id": 3, "content": "swr 배우기" },
+    { "id": 4, "content": "열심히 배우기" },
+    { "id": 5, "content": "빠르게 배우기" },
+    { "id": 6, "content": "json mock serve 뛰우기" },
+    { "id": 7, "content": "스티치 공부하기" }
+  ]
+}
