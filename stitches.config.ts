@@ -1,4 +1,5 @@
 import { createStitches } from "@stitches/react";
+import type * as Stitches from "@stitches/react";
 
 export const {
   styled,
@@ -12,14 +13,15 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      gray400: "#fff",
-      gray500: "red",
+      primary: "blueviolet",
+      secondary: "gainsboro",
+      white: "#fff",
+      black: "#000",
     },
   },
-  media: {
-    bp1: "(min-width: 480px)",
-  },
   utils: {
-    marginX: (value: string) => ({ marginLeft: value, marginRight: value }),
+    bc: (backgroundColor: Stitches.PropertyValue<"backgroundColor">) => ({
+      backgroundColor,
+    }),
   },
 });
