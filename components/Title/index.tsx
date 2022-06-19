@@ -20,6 +20,6 @@ interface TitleProps extends ComponentProps<typeof CoustomTitle> {
   text: string;
 }
 
-export function Title({ text, type = "h1" }: TitleProps) {
-  return <CoustomTitle type={type}>{text}</CoustomTitle>;
-}
+export const Title = ({ text, type = "h1" }: TitleProps) => (
+  <CoustomTitle type={type}>{text}</CoustomTitle>
+);
