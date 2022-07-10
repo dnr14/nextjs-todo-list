@@ -10,7 +10,8 @@
             "."
           ],
           "alias": {
-            "@components": "./components"
+            "@components": "./components",
+            "@fetchers": "./fetchers"
           }
         }
       ]

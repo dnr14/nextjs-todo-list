@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { Title, Text } from "@components/index";
 import React, { useEffect, useState } from "react";
 import { styled } from "@stitches/react";
+import usePosts from "../fetchers/usePosts";
 
 interface Todo {
   id: number;
@@ -12,29 +13,35 @@ interface HomeProps {
   todos: Todo[];
 }
 
-function timestamp() {
+const timeStamp = () => {
   const today = new Date();
   today.setHours(today.getHours() + 9);
   return today.toISOString().replace("T", " ").substring(0, 19);
-}
+};
 
 const Home: NextPage<HomeProps> = ({ todos }) => {
-  const [time, setTime] = useState<string>(timestamp());
+  const [time, setTime] = useState<string>(timeStamp());
+
+  const { posts, isError, isLoading } = usePosts<Todo[]>();
 
   useEffect(() => {
-    const timer = setInterval(() => setTime(timestamp()), 1000);
+    const timer = setInterval(() => setTime(timeStamp()), 1000);
     return () => clearInterval(timer);
   }, []);
+
+  if (isLoading) return <div>...loading</div>;
+  if (isError) return <div>error</div>;
 
   return (
     <TodoContainer>
       <Title text={`현재 시간 : ${time}`} />
       <Title text="오늘의 할 일" />
-      {todos.map(({ content, id }, idx) => (
-        <TodoWrapper key={id}>
-          {idx + 1}. <Text margin={"0"}>{content}</Text>
-        </TodoWrapper>
-      ))}
+      {posts &&
+        posts.map(({ content, id }, idx) => (
+          <TodoWrapper key={id}>
+            {idx + 1}. <Text margin={"0"}>{content}</Text>
+          </TodoWrapper>
+        ))}
     </TodoContainer>
   );
 };
